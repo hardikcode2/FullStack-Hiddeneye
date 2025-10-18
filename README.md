@@ -31,5 +31,14 @@ Good to go !
 
 Its Working Design:
 
-Login page -> <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/0524746c-1c5b-4d15-a398-ec1cf27dfef1" />
+Login page ->     <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/0524746c-1c5b-4d15-a398-ec1cf27dfef1" />
+
+Signup page ->   <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/db68f905-b9b3-4a40-a463-661308c97cce" />
+
+Global feed page ->   <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/d3a65b46-db7a-4983-a081-462350ec8ce9" />
+
+My Profile -> <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/b27e0f74-0b1c-4b92-8be3-7be44c4672bb" />
+
+
+
 
