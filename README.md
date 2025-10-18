@@ -28,3 +28,8 @@ npm install
 Set up required environment variables
 
 Good to go !
+
+Its Working Design:
+
+Login page -> <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/0524746c-1c5b-4d15-a398-ec1cf27dfef1" />
+
