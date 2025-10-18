@@ -26,6 +26,7 @@ export async function PUT(req) {
     await connection.end();
     return NextResponse.json({ success: true, message: "Post updated" });
   } catch (err) {
+    console.error(err);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }

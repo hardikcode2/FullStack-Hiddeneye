@@ -25,6 +25,7 @@ export async function GET(req) {
     // Wrap in { posts: [...] } to match frontend
     return NextResponse.json({ posts: rows });
   } catch (err) {
+    console.error(err);
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 }

@@ -26,6 +26,7 @@ export async function DELETE(req) {
     await connection.end();
     return NextResponse.json({ success: true, message: "Post deleted" });
   } catch (err) {
+    console.error(err);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }

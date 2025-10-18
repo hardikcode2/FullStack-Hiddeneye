@@ -232,10 +232,16 @@ export default function MyProfilePage() {
                   </div>
                 ) : (
                   <>
-                    <p
-                      className="whitespace-pre-line"
-                      dangerouslySetInnerHTML={{ __html: post.content.replace(/"/g, "&quot;") }}
-                    />
+                        <p className="whitespace-pre-line">
+                      {post.content.split('\n').map((line, i) => (
+                        <span key={i}>
+                          {line.replace(/"/g, "&quot;")}
+                          <br />
+                        </span>
+                      ))}
+                    </p>
+
+
 
                     <div className="flex justify-end mt-4 space-x-3">
                       <button
