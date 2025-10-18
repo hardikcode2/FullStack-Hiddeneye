@@ -6,10 +6,21 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Footer from "./components/footer"; // adjust path if needed
 
+type Post = {
+  id: number;
+  content: string;
+  college: string;
+};
+
+type CollegeGroup = {
+  id: number;
+  college: string;
+  posts: Post[];
+};
 
 export default function FeedPage() {
   const router = useRouter();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<CollegeGroup[]>([]);
 
   async function handleLogout() {
     try {
@@ -25,9 +36,9 @@ export default function FeedPage() {
     async function fetchPosts() {
       try {
         const res = await fetch("/api/posts");
-        const data = await res.json();
-        // Transform data to group by college like your current structure
-        const grouped = data.reduce((acc, post) => {
+        const data: Post[] = await res.json();
+
+        const grouped: CollegeGroup[] = data.reduce((acc: CollegeGroup[], post: Post) => {
           const collegeGroup = acc.find(c => c.college === post.college);
           if (collegeGroup) {
             collegeGroup.posts.push(post);
@@ -36,6 +47,7 @@ export default function FeedPage() {
           }
           return acc;
         }, []);
+
         setPosts(grouped);
       } catch (err) {
         console.error("Failed to fetch posts:", err);
@@ -47,8 +59,7 @@ export default function FeedPage() {
   return (
     <div className="min-h-screen bg-black text-gray-900 flex flex-col">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-10 py-6
-                         bg-gradient-to-br from-purple-900 via-black/50 to-black shadow-md">
+      <header className="flex justify-between items-center px-10 py-6 bg-gradient-to-br from-purple-900 via-black/50 to-black shadow-md">
         <div className="flex items-center space-x-3">
           <Image src="/logo.png" alt="Logo" width={50} height={50} />
           <h1 className="text-2xl font-bold text-white">HiddenEye</h1>
@@ -80,7 +91,6 @@ export default function FeedPage() {
                   className="bg-gray-100 text-gray-900 p-8 rounded-3xl shadow-lg hover:shadow-xl transition"
                 >
                   <p className="text-lg leading-relaxed whitespace-pre-line">{post.content}</p>
-                  
                 </div>
               ))}
             </div>
@@ -88,7 +98,6 @@ export default function FeedPage() {
         ))}
       </main>
       <Footer />
-
     </div>
   );
 }

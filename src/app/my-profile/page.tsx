@@ -21,7 +21,7 @@ export default function MyProfilePage() {
   const [isCreating, setIsCreating] = useState(false);
   const [newContent, setNewContent] = useState("");
 
-  // Fetch logged-in user's profile info
+  // Fetch logged-in user profile info
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -37,7 +37,7 @@ export default function MyProfilePage() {
     fetchUser();
   }, []);
 
-  // Fetch logged-in user's posts
+  // Fetch logged-in users posts
   useEffect(() => {
     async function fetchPosts() {
       try {
@@ -232,7 +232,11 @@ export default function MyProfilePage() {
                   </div>
                 ) : (
                   <>
-                    <p className="whitespace-pre-line">{post.content}</p>
+                    <p
+                      className="whitespace-pre-line"
+                      dangerouslySetInnerHTML={{ __html: post.content.replace(/"/g, "&quot;") }}
+                    />
+
                     <div className="flex justify-end mt-4 space-x-3">
                       <button
                         onClick={() => startEdit(post)}
