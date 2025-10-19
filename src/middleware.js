@@ -16,7 +16,8 @@ export function middleware(req) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon.ico") ||
-    pathname.startsWith("/api")
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/logo")
   ) {
     return NextResponse.next();
   }
