@@ -1,7 +1,6 @@
 import mysql from "mysql2/promise";
 
-let pool; // singleton
-
+let pool; 
 export async function getDBConnection() {
   if (!pool) {
     pool = mysql.createPool({
@@ -14,7 +13,7 @@ export async function getDBConnection() {
       connectionLimit: 10,
       queueLimit: 0,
       ssl: {
-        rejectUnauthorized: false, // required by Aiven
+        rejectUnauthorized: false, 
       },
     });
   }
