@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDBConnection } from "@/lib/db";
 
 export async function POST(req) {
   try {
     const { email, otp } = await req.json();
-
+    const db = await getDBConnection();
     if (!email || !otp) {
       return NextResponse.json({ error: "Missing email or OTP" }, { status: 400 });
     }

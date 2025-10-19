@@ -1,6 +1,7 @@
 import mysql from "mysql2/promise";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { getDBConnection } from "@/lib/db";
 
 export async function GET(req) {
   try {
@@ -9,23 +10,18 @@ export async function GET(req) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "hiddeneye_secret_key");
 
-    const connection = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "hardikSQL2#",
-      database: "hiddeneye",
-    });
+    const db = await getDBConnection();
 
-    const [rows] = await connection.execute(
+
+    const [rows] = await db.execute(
       "SELECT id, content, created_at FROM posts WHERE user_id = ? ORDER BY created_at DESC",
       [decoded.id]
     );
-    await connection.end();
+    
 
     // Wrap in { posts: [...] } to match frontend
     return NextResponse.json({ posts: rows });
   } catch (err) {
-    console.error(err);
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 }

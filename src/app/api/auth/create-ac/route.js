@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDBConnection } from "@/lib/db";
 import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   try {
+    const db = await getDBConnection();
     const { college, email, password, confirmPassword } = await req.json();
+      
+
 
     // 🧩 Log the received data
     console.log("Received signup data:", { email, password, confirmPassword, college });

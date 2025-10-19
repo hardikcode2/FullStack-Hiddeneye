@@ -1,6 +1,8 @@
 import mysql from "mysql2/promise";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { getDBConnection } from "@/lib/db";
+
 
 export async function POST(req) {
   try {
@@ -16,26 +18,22 @@ export async function POST(req) {
       return NextResponse.json({ error: "Content is required" }, { status: 400 });
     }
 
-    const connection = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "hardikSQL2#",
-      database: "hiddeneye",
-    });
+    const db = await getDBConnection();
+
 
     // Insert post with user_id, college, and content
-    const [result] = await connection.execute(
+    const [result] = await db.execute(
       "INSERT INTO posts (user_id, college, content) VALUES (?, ?, ?)",
       [decoded.id, college, content]
     );
 
     // Fetch the newly created post to return
-    const [rows] = await connection.execute(
+    const [rows] = await db.execute(
       "SELECT * FROM posts WHERE id = ?",
       [result.insertId]
     );
 
-    await connection.end();
+    
 
     return NextResponse.json({ success: true, post: rows[0] });
   } catch (err) {

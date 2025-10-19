@@ -1,6 +1,8 @@
 import mysql from "mysql2/promise";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { getDBConnection } from "@/lib/db";
+
 
 export async function PUT(req) {
   try {
@@ -10,20 +12,16 @@ export async function PUT(req) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "hiddeneye_secret_key");
     const { id, content } = await req.json();
 
-    const connection = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "hardikSQL2#",
-      database: "hiddeneye",
-    });
+        const db = await getDBConnection();
+    
 
     // Update only if user owns the post
-    await connection.execute(
+    await db.execute(
       "UPDATE posts SET content = ? WHERE id = ? AND user_id = ?",
       [content, id, decoded.id]
     );
 
-    await connection.end();
+    
     return NextResponse.json({ success: true, message: "Post updated" });
   } catch (err) {
     console.error(err);

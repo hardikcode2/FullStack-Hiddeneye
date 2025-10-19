@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 import jwt from "jsonwebtoken";
+import { getDBConnection } from "@/lib/db";
+
+
+
 
 export async function GET(req) {
   try {
+    const db = await getDBConnection();
     const token = req.cookies.get("token")?.value;
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -13,19 +18,14 @@ export async function GET(req) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "hiddeneye_secret_key");
 
     // ✅ Connect to MySQL
-    const db = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "hardikSQL2#",
-      database: "hiddeneye",
-    });
+   
 
     // ✅ Fetch user details
     const [rows] = await db.execute(
       "SELECT id, email, college FROM users WHERE id = ?",
       [decoded.id]
     );
-    await db.end();
+    
 
     if (rows.length === 0) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
