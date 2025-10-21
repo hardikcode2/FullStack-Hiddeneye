@@ -1,35 +1,68 @@
 # Hidden Eye
 
-Hidden Eye is an anonymous posting platform designed specifically for college students. It provides a safe space for students to share their thoughts, experiences, and concerns without fear of judgment or social pressure. Only verified college users can access the platform, ensuring a trusted and secure environment.
+**Hidden Eye** is an anonymous post web application designed exclusively for college students. It provides a safe, judgment-free platform where users can share their thoughts, experiences, and questions without fear or pressure.
+
+---
 
 ## Features
 
-- **Anonymous Posting:** Share your thoughts and feelings without revealing your identity.
-- **College Verification:** Only users with a valid college email can join.
-- **Safe Environment:** Encourage honest conversations free from judgment or peer pressure.
-- **Responsive Design:** Built with TailwindCSS for a smooth and modern user experience.
+- **Anonymous Posting:** Share thoughts and ideas without revealing your identity.  
+- **College-Only Access:** Only users with valid college emails can register and access the platform.  
+- **Secure Authentication:** User authentication powered by JWT and password hashing.  
+- **User-Friendly Interface:** Clean, responsive design built with TailwindCSS.  
+- **Real-Time Interaction:** View posts and interact with others seamlessly.  
+- **Safe & Supportive Environment:** Encourages open discussion without judgment.  
+
+---
 
 ## Tech Stack
 
-- **Frontend:** Next.js 15
-- **Styling:** TailwindCSS
-- **Backend & Database:** MySQL
-- **Authentication:** JWT (JSON Web Tokens) for secure user sessions
+- **Frontend:** Next.js 15, TailwindCSS  
+- **Backend:** Node.js, Next.js API Routes  
+- **Database:** MySQL (Cloud-ready, e.g., Aiven)  
+- **Authentication:** JWT (JSON Web Tokens), bcrypt for password hashing  
+- **Deployment:** Vercel  
 
-## Installation
+---
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/hidden-eye.git
-   cd hidden-eye
-Install dependencies
+## Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone 
+cd hidden-eye
 npm install
+```
+### 2. Create a .env.local file in the root folder and add required environment variables
 
-Set up required environment variables
+### 3. Run the development server
+npm run dev
 
-Good to go !
+### 4. Deployment
+
+-The app is deployed on Vercel for real-time accessibility.
+-MySQL database is hosted on Aiven cloud for reliability and scalability.
+
+### 5. Folder Structure
+
+hidden-eye/
+├── src/
+│   ├── app/                # Next.js pages and API routes
+│   ├── components/         # Reusable React components
+│   ├── lib/                # Database connection and utilities
+│   ├── styles/             # TailwindCSS styles
+│   └── public/             # Static assets like images and icons
+├── .env.local              # Environment variables
+├── package.json
+└── README.md
 
 
+## Security & Privacy
 
+-Password Hashing: All user passwords are hashed using bcrypt before storing in the database.
 
+-JWT Authentication: Ensures secure session management and access control.
 
+-College Email Verification: Prevents unauthorized users from accessing the platform.
+
+You are Good to go!
