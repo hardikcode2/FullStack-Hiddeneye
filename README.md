@@ -38,9 +38,12 @@ npm install
 ### 3. Run the development server
 npm run dev
 
+---
+
 ### 4. Deployment
 
 -The app is deployed on Vercel for real-time accessibility.
+
 -MySQL database is hosted on Aiven cloud for reliability and scalability.
 
 ### 5. Folder Structure
@@ -55,6 +58,7 @@ hidden-eye/
 ├── .env.local              # Environment variables
 ├── package.json
 └── README.md
+
 
 
 ## Security & Privacy
