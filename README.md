@@ -33,10 +33,16 @@ git clone
 cd hidden-eye
 npm install
 ```
-### 2. Create a .env.local file in the root folder and add required environment variables
+### 2. Create a .env.local file
+
+-In the root folder and add required environment variables
+
+Like: DB_HOST, DB_PASSWORD...
 
 ### 3. Run the development server
+```bash
 npm run dev
+```
 
 ---
 
