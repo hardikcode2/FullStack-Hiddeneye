@@ -145,28 +145,28 @@ export default function MyProfilePage() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-10 py-6 bg-gradient-to-br from-purple-900 via-black/50 to-black shadow-md">
-        <Link href="/">
-          <div className="flex items-center space-x-3">
-            <Image src="/logo.png" alt="Logo" width={50} height={50} style={{ cursor: "pointer" }} />
-            <h1 className="text-2xl font-bold text-white">HiddenEye</h1>
-          </div>
-        </Link>
+      <header className="flex flex-col sm:flex-row justify-between items-center px-6 sm:px-10 py-4 sm:py-6 bg-gradient-to-br from-purple-900 via-black/50 to-black shadow-md space-y-4 sm:space-y-0">
+      <Link href="/">
+  <div className="flex items-center space-x-3">
+    <Image src="/logo.png" alt="Logo" width={50} height={50} />
+    <h1 className="text-2xl font-bold text-white">HiddenEye</h1>
+  </div>
+  </Link>
+  <div className="flex space-x-3">
+    <Link href="/my-profile">
+      <button className="px-4 py-2 bg-transparent text-white border-2 border-blue-900 rounded-lg transition hover:border-blue-500 hover:bg-blue-900/30">
+        My Profile
+      </button>
+    </Link>
+    <button
+      onClick={handleLogout}
+      className="px-4 py-2 bg-transparent text-white border-2 border-red-700 rounded-lg transition hover:border-red-500 hover:bg-red-700/30"
+    >
+      Logout
+    </button>
+  </div>
+</header>
 
-        <div className="space-x-4">
-          <Link href="/my-profile">
-            <button className="px-4 py-2 bg-transparent text-white border-2 border-blue-900 rounded-lg transition hover:border-blue-500 hover:bg-blue-900/30">
-              My Profile
-            </button>
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-transparent text-white border-2 border-red-700 rounded-lg transition hover:border-red-500 hover:bg-red-700/30"
-          >
-            Logout
-          </button>
-        </div>
-      </header>
 
       {/* Profile Section */}
       <main className="flex-grow p-10 space-y-10">

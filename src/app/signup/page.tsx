@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Footer from "../components/footer"; // adjust path if needed
+import Footer from "../components/footer"; 
 
 
 export default function SignupPage() {
@@ -16,12 +16,16 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [otpLoading, setOtpLoading] = useState(false); // for OTP sending state
+
 
   const isEmailValid = email.includes("@") && email.includes(".");
   const passwordsMatch = password && repeatPassword && password === repeatPassword;
 
   // Send OTP
   const handleSendOtp = async () => {
+    if (otpLoading) return; // prevent multiple clicks
+    setOtpLoading(true);
     try {
       const res = await fetch("/api/auth/send-otp", {
         method: "POST",
@@ -38,6 +42,9 @@ export default function SignupPage() {
     } catch (err) {
       console.error(err);
       setMessage("Server error while sending OTP");
+    }
+    finally {
+    setOtpLoading(false); // re-enable button
     }
   };
 
@@ -147,12 +154,13 @@ export default function SignupPage() {
                 <button
                   type="button"
                   className={`mt-5 px-5 py-3 rounded-lg font-medium transition ${
-                    isEmailValid ? "bg-indigo-600 hover:bg-indigo-700" : "bg-gray-600 cursor-not-allowed"
+                    isEmailValid  || otpLoading ?"bg-indigo-600 hover:bg-indigo-700"
+                   : "bg-gray-600 cursor-not-allowed"
                   }`}
-                  disabled={!isEmailValid}
+                  disabled={!isEmailValid || otpLoading}
                   onClick={handleSendOtp}
                 >
-                  Verify
+                  {otpLoading ? "Sending..." : "Verify"}
                 </button>
               )}
             </div>
