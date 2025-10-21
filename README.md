@@ -18,8 +18,8 @@
 ## Tech Stack
 
 - **Frontend:** Next.js 15, TailwindCSS  
-- **Backend:** Node.js, Next.js API Routes  
-- **Database:** MySQL (Cloud-ready, e.g., Aiven)  
+- **Backend:** Node.js via Next.js API Routes  
+- **Database:** MySQL (Cloud-ready with Aiven)  
 - **Authentication:** JWT (JSON Web Tokens), bcrypt for password hashing  
 - **Deployment:** Vercel  
 
@@ -45,19 +45,6 @@ npm run dev
 -The app is deployed on Vercel for real-time accessibility.
 
 -MySQL database is hosted on Aiven cloud for reliability and scalability.
-
-### 5. Folder Structure
-
-hidden-eye/
-├── src/
-│   ├── app/                # Next.js pages and API routes
-│   ├── components/         # Reusable React components
-│   ├── lib/                # Database connection and utilities
-│   ├── styles/             # TailwindCSS styles
-│   └── public/             # Static assets like images and icons
-├── .env.local              # Environment variables
-├── package.json
-└── README.md
 
 
 
