@@ -4,6 +4,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Footer from "../components/footer"; 
 
+// Function to check that email domain and college name are same 
+// function emailMatchesCollege(email: string, college: string) {
+//   if (!email.includes("@") || !college) return false;
+
+//   const domain = email.split("@")[1].toLowerCase();
+//   const col = college.toLowerCase().trim();
+//   return domain.includes(col);
+// }
 
 export default function SignupPage() {
   const router = useRouter();
@@ -20,6 +28,10 @@ export default function SignupPage() {
 
 
   const isEmailValid = email.includes("@") && email.includes(".");
+// COLLEGE EMAIL Verification Check below (commented so you can use any email for testing);
+  // const isEmailValid =
+  // email.includes("@") &&
+  // ((/(\.ac\.in$)|(\.edu$)/i.test(email)) && emailMatchesCollege(email, collegeName));
   const passwordsMatch = password && repeatPassword && password === repeatPassword;
 
   // Send OTP
