@@ -23,4 +23,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  cursor: url('/cursor-arrowhead.svg') 5 2.5, auto;
+}
+
+* {
+  cursor: url('/cursor-arrowhead.svg') 5 2.5, auto;
+}
+
+/* Spotlight cursor optimizations */
+.spotlight-cursor {
+  contain: layout style paint;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }

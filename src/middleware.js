@@ -17,7 +17,8 @@ export function middleware(req) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon.ico") ||
     pathname.startsWith("/api") ||
-    pathname.startsWith("/logo")
+    pathname.startsWith("/logo") ||
+    pathname.startsWith("/cursor-arrowhead.svg")
   ) {
     return NextResponse.next();
   }
